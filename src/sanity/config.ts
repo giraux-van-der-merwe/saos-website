@@ -4,10 +4,10 @@ import { visionTool } from "@sanity/vision";
 import { schemaTypes } from "./schemas";
 
 export const sanityConfig = defineConfig({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production",
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "s0kg7aow",
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
   title: "Southern Africa Overlanding Storage",
-  apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION ?? "2024-01-01",
+  apiVersion: "2024-01-01",
   basePath: "/studio",
   plugins: [
     structureTool(),
