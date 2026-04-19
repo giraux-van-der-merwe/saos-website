@@ -28,7 +28,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="shrink-0">
             <Image
-              src="/logos/logo-parchment.png"
+              src="/logos/primary-parchment.png"
               alt="Southern Africa Overlanding Storage"
               width={180}
               height={60}
