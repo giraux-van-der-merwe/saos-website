@@ -1,5 +1,9 @@
-import { LoadingBlock } from "next-sanity/studio";
+"use client";
 
 export default function StudioLoading() {
-  return <LoadingBlock />;
+  return (
+    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+      Loading Studio...
+    </div>
+  );
 }

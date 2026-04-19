@@ -1,12 +1,11 @@
-import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
-
 export interface SanitySlug {
   current: string;
 }
 
 export interface SanityImage {
   _type: "image";
-  asset: SanityImageSource;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  asset: any;
   alt?: string;
   hotspot?: { x: number; y: number; height: number; width: number };
 }
