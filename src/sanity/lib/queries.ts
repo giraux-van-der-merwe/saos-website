@@ -60,3 +60,24 @@ export const pageBySlugQuery = groq`
     content
   }
 `;
+
+// Fetch all active FAQs ordered by display order
+export const faqsQuery = groq`
+  *[_type == "faq" && isActive == true] | order(order asc) {
+    _id,
+    question,
+    answer,
+    order
+  }
+`;
+
+// Fetch all active services ordered by display order
+export const servicesQuery = groq`
+  *[_type == "service" && isActive == true] | order(order asc) {
+    _id,
+    title,
+    icon,
+    description,
+    order
+  }
+`;

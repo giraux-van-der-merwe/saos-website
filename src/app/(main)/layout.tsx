@@ -9,7 +9,8 @@ export default function MainLayout({
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="flex-1">{children}</main>
+      {/* pt-28 clears the fixed floating nav (h-20 + pt-4 top offset) */}
+      <main className="flex-1 pt-28">{children}</main>
       <Footer />
     </div>
   );

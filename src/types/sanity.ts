@@ -35,6 +35,21 @@ export interface Page {
   content?: unknown[];
 }
 
+export interface Faq {
+  _id: string;
+  question: string;
+  answer: string;
+  order: number;
+}
+
+export interface Service {
+  _id: string;
+  title: string;
+  icon?: string;
+  description: string;
+  order: number;
+}
+
 export interface SiteSettings {
   siteName: string;
   tagline?: string;
