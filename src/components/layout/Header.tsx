@@ -40,9 +40,9 @@ export default function Header() {
     return () => observer.disconnect();
   }, []);
 
-  const linkClass = (href: string) =>
+  const linkClass = (_href: string) =>
     `px-3 py-2 rounded text-base font-medium transition-colors whitespace-nowrap ${
-      pathname === href ? "text-cinnamon" : scrolled ? "text-parchment hover:text-cinnamon" : "text-evergreen hover:text-cinnamon"
+      scrolled ? "text-parchment hover:text-cinnamon" : "text-evergreen hover:text-cinnamon"
     }`;
 
   return (

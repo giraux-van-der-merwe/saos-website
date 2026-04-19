@@ -89,50 +89,58 @@ export default async function HomePage() {
       {/* ── Hero: text above, image below, fits viewport ── */}
       <div className="min-h-screen flex flex-col bg-parchment">
         {/* Text area */}
-        <div className="flex-none px-4 pt-2 pb-8 sm:px-6 lg:px-8">
+        <div className="flex-none px-4 pt-6 pb-6 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
-            <p className="text-sm font-semibold uppercase tracking-widest text-cinnamon mb-4">
+            {/* Eyebrow — shrinks at ≤470px to stay on one line */}
+            <p className="font-semibold uppercase tracking-widest text-cinnamon mb-4 text-[10px] min-[471px]:text-sm">
               Overlanding Vehicle Storage in Johannesburg
             </p>
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-end">
-              {/* Col 1: H1 — left, unchanged */}
-              <h1 className="font-heading text-4xl font-bold text-evergreen sm:text-5xl" style={{ lineHeight: 1.1 }}>
-                Park your rig.<br />
-                Catch your flight.<br />
-                <span className="text-cinnamon">Come back ready to roll.</span>
-              </h1>
-              {/* Col 2: support text — pushed right to align with nav right edge */}
-              <div className="lg:pl-10 lg:pr-8">
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:items-start">
+              {/* Below lg: H1 first, support second */}
+              {/* At lg+:   support left, H1 right   */}
+
+              {/* Support text */}
+              <div className="order-2 lg:order-1 lg:pr-8">
+                <div className="border-t border-evergreen/15 hidden lg:block" style={{ marginBottom: '1rem' }} />
                 <p className="text-base text-evergreen/70 leading-relaxed">
                   Secure, under-watch storage 28 km from O.R. Tambo — plus the airport pickups, services, and on-the-ground help that keep your African overland trip alive between flights home.
                 </p>
-                <div className="mt-6 flex flex-wrap gap-4">
+                <div className="mt-6 flex gap-4">
                   <Link
                     href="/contact"
                     data-red-cta
-                    className="inline-block bg-cinnamon text-parchment px-7 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-colors"
+                    className="flex-1 text-center bg-cinnamon text-parchment px-7 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-colors whitespace-nowrap"
                   >
-                    Enquire about storage
+                    <span className="min-[491px]:hidden">Enquire</span>
+                    <span className="hidden min-[491px]:inline">Enquire about storage</span>
                   </Link>
                   <a
                     href={WHATSAPP_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block border border-evergreen text-evergreen px-7 py-3 rounded-lg font-semibold hover:bg-evergreen hover:text-parchment transition-colors"
+                    className="flex-1 text-center border border-evergreen text-evergreen px-7 py-3 rounded-lg font-semibold hover:bg-evergreen hover:text-parchment transition-colors whitespace-nowrap"
                   >
-                    WhatsApp the team
+                    <span className="min-[491px]:hidden">WhatsApp us</span>
+                    <span className="hidden min-[491px]:inline">WhatsApp the team</span>
                   </a>
                 </div>
-                <p className="mt-4 text-sm text-evergreen/50">
+                <p className="mt-3 text-sm text-evergreen/50">
                   Trusted by overlanders from 14+ countries · Mon–Sat · We answer.
                 </p>
               </div>
+
+              {/* H1 */}
+              <h1 className="order-1 lg:order-2 font-heading text-4xl font-bold text-evergreen sm:text-5xl lg:pl-10" style={{ lineHeight: 1.1, paddingTop: 'calc(1rem + 2px)' }}>
+                Park your rig.<br />
+                <span className="hero-catch-line hidden lg:inline">Catch your flight.<br /></span>
+                <span className="text-cinnamon">Come back ready to roll.</span>
+              </h1>
             </div>
           </div>
         </div>
 
         {/* Hero image fills remaining viewport */}
-        <div className="flex-1 relative min-h-64">
+        <div className="flex-1 relative min-h-48">
           <Image
             src="/images/hero.png"
             alt="SAOS secure storage facility and African landscape"

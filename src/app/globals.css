@@ -40,3 +40,10 @@ body {
   color: var(--foreground);
   font-family: "Satoshi", Arial, sans-serif;
 }
+
+/* Hide "Catch your flight." only when BOTH width < 1024px AND height < 835px */
+@media (max-width: 1023px) and (max-height: 835px) {
+  .hero-catch-line {
+    display: none;
+  }
+}
