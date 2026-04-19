@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { sanityClient } from "@/sanity/lib/client";
-import { faqsQuery, servicesQuery, reviewsQuery } from "@/sanity/lib/queries";
-import type { Faq, Service, Review } from "@/types/sanity";
+import { faqsQuery, servicesQuery, reviewsQuery, homePageQuery } from "@/sanity/lib/queries";
+import type { Faq, Service, Review, HomePage } from "@/types/sanity";
 import FaqAccordion from "@/components/homepage/FaqAccordion";
 
 export const metadata: Metadata = {
@@ -74,15 +74,17 @@ const extraServices = [
 const WHATSAPP_URL = "https://wa.me/27614558784?text=Hi%20SAOS%20%E2%80%94%20I'm%20thinking%20about%20storing%20my%20vehicle%20with%20you.%20Can%20we%20chat%3F";
 
 export default async function HomePage() {
-  const [cmsServices, cmsFaqs, cmsReviews] = await Promise.all([
+  const [cmsServices, cmsFaqs, cmsReviews, cmsHome] = await Promise.all([
     sanityClient.fetch<Service[]>(servicesQuery).catch(() => []),
     sanityClient.fetch<Faq[]>(faqsQuery).catch(() => []),
     sanityClient.fetch<Review[]>(reviewsQuery).catch(() => []),
+    sanityClient.fetch<HomePage | null>(homePageQuery).catch(() => null),
   ]);
 
   const services = cmsServices.length > 0 ? cmsServices : fallbackServices;
   const faqs = cmsFaqs.length > 0 ? cmsFaqs : fallbackFaqs;
   const reviews = cmsReviews.length > 0 ? cmsReviews : fallbackReviews;
+  const home = cmsHome ?? {};
 
   return (
     <>
@@ -95,6 +97,7 @@ export default async function HomePage() {
             <p className="font-semibold uppercase tracking-widest text-cinnamon mb-4 text-[10px] min-[471px]:text-sm">
               Overlanding Vehicle Storage in Johannesburg
             </p>
+            {/* Hero eyebrow is intentionally hardcoded as brand anchor */}
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:items-start">
               {/* Below lg: H1 first, support second */}
               {/* At lg+:   support left, H1 right   */}
@@ -103,7 +106,7 @@ export default async function HomePage() {
               <div className="order-2 lg:order-1 lg:pr-8">
                 <div className="border-t border-evergreen/15 hidden lg:block" style={{ marginBottom: '1rem' }} />
                 <p className="text-base text-evergreen/70 leading-relaxed">
-                  Secure, under-watch storage 28 km from O.R. Tambo — plus the airport pickups, services, and on-the-ground help that keep your African overland trip alive between flights home.
+                  {home.heroSupportText ?? "Secure, under-watch storage 28 km from O.R. Tambo — plus the airport pickups, services, and on-the-ground help that keep your African overland trip alive between flights home."}
                 </p>
                 <div className="mt-6 flex gap-4">
                   <Link
@@ -112,7 +115,7 @@ export default async function HomePage() {
                     className="flex-1 text-center bg-cinnamon text-parchment px-7 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-colors whitespace-nowrap"
                   >
                     <span className="min-[491px]:hidden">Enquire</span>
-                    <span className="hidden min-[491px]:inline">Enquire about storage</span>
+                    <span className="hidden min-[491px]:inline">{home.heroCtaPrimary ?? "Enquire about storage"}</span>
                   </Link>
                   <a
                     href={WHATSAPP_URL}
@@ -121,7 +124,7 @@ export default async function HomePage() {
                     className="flex-1 text-center border border-evergreen text-evergreen px-7 py-3 rounded-lg font-semibold hover:bg-evergreen hover:text-parchment transition-colors whitespace-nowrap"
                   >
                     <span className="min-[491px]:hidden">WhatsApp us</span>
-                    <span className="hidden min-[491px]:inline">WhatsApp the team</span>
+                    <span className="hidden min-[491px]:inline">{home.heroCtaSecondary ?? "WhatsApp the team"}</span>
                   </a>
                 </div>
                 <p className="mt-3 text-sm text-evergreen/50">
@@ -131,9 +134,15 @@ export default async function HomePage() {
 
               {/* H1 */}
               <h1 className="order-1 lg:order-2 font-heading text-4xl font-bold text-evergreen sm:text-5xl lg:pl-10" style={{ lineHeight: 1.1, paddingTop: 'calc(1rem + 2px)' }}>
-                Park your rig.<br />
-                <span className="hero-catch-line hidden lg:inline">Catch your flight.<br /></span>
-                <span className="text-cinnamon">Come back ready to roll.</span>
+                {home.heroHeadline ? (
+                  home.heroHeadline
+                ) : (
+                  <>
+                    Park your rig.<br />
+                    <span className="hero-catch-line hidden lg:inline">Catch your flight.<br /></span>
+                    <span className="text-cinnamon">Come back ready to roll.</span>
+                  </>
+                )}
               </h1>
             </div>
           </div>
@@ -154,14 +163,17 @@ export default async function HomePage() {
       {/* ── Trust strip ── */}
       <section className="bg-pine-teal text-parchment py-8 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl grid grid-cols-2 gap-6 sm:grid-cols-4">
-          {[
-            { stat: "24/7 monitored", label: "Secure facility" },
-            { stat: "28 km", label: "From O.R. Tambo International" },
-            { stat: "14+ countries", label: "Overlanders stored with us" },
-            { stat: "Personal handover", label: "Every vehicle, every time" },
-          ].map((item) => (
-            <div key={item.stat}>
-              <p className="text-xl font-bold text-parchment">{item.stat}</p>
+          {(home.trustStats && home.trustStats.length > 0
+            ? home.trustStats
+            : [
+                { value: "24/7 monitored", label: "Secure facility" },
+                { value: "28 km", label: "From O.R. Tambo International" },
+                { value: "14+ countries", label: "Overlanders stored with us" },
+                { value: "Personal handover", label: "Every vehicle, every time" },
+              ]
+          ).map((item) => (
+            <div key={item.value}>
+              <p className="text-xl font-bold text-parchment">{item.value}</p>
               <p className="text-base text-khaki mt-1">{item.label}</p>
             </div>
           ))}
@@ -173,12 +185,18 @@ export default async function HomePage() {
         <div className="mx-auto max-w-3xl">
           <p className="text-xs font-semibold uppercase tracking-widest text-cinnamon mb-3">Your African basecamp.</p>
           <h2 className="font-heading text-3xl font-bold sm:text-4xl leading-tight">
-            Think of us less as storage.<br />More as your basecamp on the continent.
+            {home.solutionHeading ?? <>Think of us less as storage.<br />More as your basecamp on the continent.</>}
           </h2>
           <div className="mt-8 space-y-5 text-khaki leading-relaxed">
-            <p>Southern Africa Overlander Storage was built by people who've done the trip — for people who are still in the middle of theirs.</p>
-            <p>Drop your vehicle off the day before your flight. We pick you up at OR Tambo when you fly back in. Your rig is washed, charged, licensed, serviced, and parked exactly where you left it.</p>
-            <p>No friend doing you a favour. No yard with a padlock and a prayer. A small team that knows your vehicle by name and answers the WhatsApp at 7am.</p>
+            {home.solutionBody ? (
+              home.solutionBody.split("\n\n").map((para, i) => <p key={i}>{para}</p>)
+            ) : (
+              <>
+                <p>Southern Africa Overlander Storage was built by people who've done the trip — for people who are still in the middle of theirs.</p>
+                <p>Drop your vehicle off the day before your flight. We pick you up at OR Tambo when you fly back in. Your rig is washed, charged, licensed, serviced, and parked exactly where you left it.</p>
+                <p>No friend doing you a favour. No yard with a padlock and a prayer. A small team that knows your vehicle by name and answers the WhatsApp at 7am.</p>
+              </>
+            )}
           </div>
           <Link href="/contact" className="mt-8 inline-block border border-parchment text-parchment px-8 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors">
             Tell us about your trip
@@ -191,16 +209,34 @@ export default async function HomePage() {
         <div className="mx-auto max-w-7xl">
           <p className="text-xs font-semibold uppercase tracking-widest text-khaki mb-3">Services</p>
           <h2 className="font-heading text-3xl font-bold text-evergreen sm:text-4xl max-w-2xl leading-tight">
-            Storage is just the start. Let's make sure you're ready.
+            {home.servicesHeading ?? "Storage is just the start. Let's make sure you're ready."}
           </h2>
           <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((s) => (
-              <div key={s._id} className="bg-white rounded-xl p-6 border border-khaki/20 shadow-sm">
-                {s.icon && <span className="text-3xl">{s.icon}</span>}
-                <h3 className="font-heading text-lg font-semibold text-evergreen mt-3 mb-2">{s.title}</h3>
-                <p className="text-sm text-evergreen/70 leading-relaxed">{s.description}</p>
-              </div>
-            ))}
+            {services.map((s) => {
+              const cardContent = (
+                <>
+                  {s.icon && <span className="text-3xl">{s.icon}</span>}
+                  <h3 className="font-heading text-lg font-semibold text-evergreen mt-3 mb-2">{s.title}</h3>
+                  <p className="text-sm text-evergreen/70 leading-relaxed">{s.description}</p>
+                  {s.slug?.current && (
+                    <span className="mt-3 inline-block text-xs font-semibold text-cinnamon">Learn more →</span>
+                  )}
+                </>
+              );
+              return s.slug?.current ? (
+                <Link
+                  key={s._id}
+                  href={`/storage-services/${s.slug.current}`}
+                  className="bg-white rounded-xl p-6 border border-khaki/20 shadow-sm hover:shadow-md hover:border-cinnamon/40 transition-all"
+                >
+                  {cardContent}
+                </Link>
+              ) : (
+                <div key={s._id} className="bg-white rounded-xl p-6 border border-khaki/20 shadow-sm">
+                  {cardContent}
+                </div>
+              );
+            })}
           </div>
           <p className="mt-8 text-sm text-evergreen/60 max-w-2xl">
             Pick what you need. Skip what you don't. Most clients bundle storage with pickup and monthly checks — your enquiry is where we figure that out together.
@@ -220,10 +256,13 @@ export default async function HomePage() {
         <div className="mx-auto max-w-7xl">
           <p className="text-xs font-semibold uppercase tracking-widest text-khaki mb-3">The whole thing, in 4 steps.</p>
           <h2 className="font-heading text-3xl font-bold sm:text-4xl max-w-xl leading-tight">
-            Booking with us is the easy part of your trip.
+            {home.howItWorksHeading ?? "Booking with us is the easy part of your trip."}
           </h2>
           <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {steps.map((step) => (
+            {(home.howItWorksSteps && home.howItWorksSteps.length > 0
+              ? home.howItWorksSteps.map((s) => ({ number: s.stepNumber, title: s.title, body: s.description }))
+              : steps
+            ).map((step) => (
               <div key={step.number}>
                 <p className="font-heading text-5xl font-bold text-cinnamon opacity-60">{step.number}</p>
                 <h3 className="font-heading text-lg font-semibold text-parchment mt-2 mb-2">{step.title}</h3>
@@ -245,11 +284,14 @@ export default async function HomePage() {
       <section className="bg-parchment py-24 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <h2 className="font-heading text-3xl font-bold text-evergreen sm:text-4xl max-w-2xl leading-tight">
-            Why overlanders pick us over the alternatives.
+            {home.whySaosHeading ?? "Why overlanders pick us over the alternatives."}
           </h2>
           <p className="mt-3 text-evergreen/60 max-w-xl">There aren't many people doing this in Southern Africa. Here's the difference between us and the rest.</p>
           <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-3">
-            {differentiators.map((d) => (
+            {(home.whySaosPoints && home.whySaosPoints.length > 0
+              ? home.whySaosPoints.map((p) => ({ heading: p.title, body: p.description }))
+              : differentiators
+            ).map((d) => (
               <div key={d.heading} className="border-t-2 border-cinnamon pt-6">
                 <h3 className="font-heading text-lg font-semibold text-evergreen mb-3">{d.heading}</h3>
                 <p className="text-sm text-evergreen/70 leading-relaxed">{d.body}</p>
@@ -320,14 +362,20 @@ export default async function HomePage() {
       <section className="bg-pine-teal text-parchment py-24 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl">
           <h2 className="font-heading text-3xl font-bold sm:text-4xl leading-tight">
-            We are overlanders too.<br />That is the whole reason this exists.
+            {home.founderHeading ?? <>We are overlanders too.<br />That is the whole reason this exists.</>}
           </h2>
           <div className="mt-8 space-y-5 text-khaki leading-relaxed">
-            <p>Hi — Antonie here.</p>
-            <p>A few years back I parked my own rig in Joburg between trips. Spent the entire flight home worrying about it. Spent half the next trip un-doing what nine months of neglect had done to it.</p>
-            <p>So we built the place I wished existed.</p>
-            <p>The team here are overlanders, mechanics, and South Africans who actually like solving problems before they become emergencies. We answer the phone. We send the photo. We pick you up at the airport. We get your paperwork sorted before you land.</p>
-            <p>Because the time you've saved for this trip is short. And we'd rather you spent it driving than fixing.</p>
+            {home.founderBody ? (
+              home.founderBody.split("\n\n").map((para, i) => <p key={i}>{para}</p>)
+            ) : (
+              <>
+                <p>Hi — Antonie here.</p>
+                <p>A few years back I parked my own rig in Joburg between trips. Spent the entire flight home worrying about it. Spent half the next trip un-doing what nine months of neglect had done to it.</p>
+                <p>So we built the place I wished existed.</p>
+                <p>The team here are overlanders, mechanics, and South Africans who actually like solving problems before they become emergencies. We answer the phone. We send the photo. We pick you up at the airport. We get your paperwork sorted before you land.</p>
+                <p>Because the time you've saved for this trip is short. And we'd rather you spent it driving than fixing.</p>
+              </>
+            )}
           </div>
           <div className="mt-8 h-48 w-full rounded-xl bg-evergreen/40 flex items-center justify-center text-khaki text-sm">
             Team photo coming soon
@@ -381,10 +429,10 @@ export default async function HomePage() {
       <section className="bg-cinnamon text-parchment py-24 px-4 sm:px-6 lg:px-8 text-center">
         <div className="mx-auto max-w-3xl">
           <h2 className="font-heading text-3xl font-bold sm:text-4xl leading-tight">
-            Your next African trip starts the day you book the storage.
+            {home.finalCtaHeading ?? "Your next African trip starts the day you book the storage."}
           </h2>
           <p className="mt-4 text-parchment/80 max-w-xl mx-auto leading-relaxed">
-            Tell us about your vehicle and your dates. We'll come back to you within one business day with a tailored plan, a quote, and a real name to ask for when you land.
+            {home.finalCtaBody ?? "Tell us about your vehicle and your dates. We'll come back to you within one business day with a tailored plan, a quote, and a real name to ask for when you land."}
           </p>
           <div className="mt-8 flex flex-wrap gap-4 justify-center">
             <Link href="/contact" className="inline-block bg-evergreen text-parchment px-10 py-3 rounded-lg font-semibold hover:bg-pine-teal transition-colors">

@@ -12,6 +12,13 @@ export const serviceSchema = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      options: { source: "title", maxLength: 96 },
+      description: "Auto-generated from title — used for service detail page URL",
+    }),
+    defineField({
       name: "icon",
       title: "Icon",
       type: "string",

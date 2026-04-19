@@ -45,9 +45,60 @@ export interface Faq {
 export interface Service {
   _id: string;
   title: string;
+  slug?: SanitySlug;
   icon?: string;
   description: string;
   order: number;
+}
+
+export interface Partner {
+  _id: string;
+  name: string;
+  logo?: SanityImage;
+  description?: string;
+  website?: string;
+  order: number;
+}
+
+export interface Post {
+  _id: string;
+  title: string;
+  slug: SanitySlug;
+  excerpt?: string;
+  coverImage?: SanityImage;
+  body?: unknown[];
+  publishedAt?: string;
+}
+
+export interface SeoFields {
+  metaTitle?: string;
+  metaDescription?: string;
+  ogImage?: SanityImage;
+}
+
+export interface PageSingleton {
+  pageHeading?: string;
+  pageIntro?: string;
+  seo?: SeoFields;
+}
+
+export interface HomePage {
+  heroHeadline?: string;
+  heroSupportText?: string;
+  heroCtaPrimary?: string;
+  heroCtaSecondary?: string;
+  trustStats?: Array<{ value: string; label: string }>;
+  solutionHeading?: string;
+  solutionBody?: string;
+  servicesHeading?: string;
+  howItWorksHeading?: string;
+  howItWorksSteps?: Array<{ stepNumber: string; title: string; description: string }>;
+  whySaosHeading?: string;
+  whySaosPoints?: Array<{ title: string; description: string }>;
+  founderHeading?: string;
+  founderBody?: string;
+  finalCtaHeading?: string;
+  finalCtaBody?: string;
 }
 
 export interface Review {

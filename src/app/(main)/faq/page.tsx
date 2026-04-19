@@ -1,26 +1,45 @@
 import type { Metadata } from "next";
+import { sanityClient } from "@/sanity/lib/client";
+import { faqPageContentQuery, faqsQuery } from "@/sanity/lib/queries";
+import type { Faq, PageSingleton } from "@/types/sanity";
+import FaqAccordion from "@/components/homepage/FaqAccordion";
 
-export const metadata: Metadata = {
-  title: "FAQ",
-  description: "Frequently asked questions about Southern Africa Overlanding Storage.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await sanityClient.fetch<PageSingleton | null>(faqPageContentQuery).catch(() => null);
+  return {
+    title: page?.seo?.metaTitle ?? "FAQ | SAOS",
+    description: page?.seo?.metaDescription ?? "Frequently asked questions about Southern Africa Overlanding Storage.",
+  };
+}
 
-export default function FaqPage() {
+export default async function FaqPage() {
+  const [page, faqs] = await Promise.all([
+    sanityClient.fetch<PageSingleton | null>(faqPageContentQuery).catch(() => null),
+    sanityClient.fetch<Faq[]>(faqsQuery).catch(() => []),
+  ]);
+
   return (
-    <>
-      <section className="bg-pine-teal text-parchment py-20 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <h1 className="font-heading text-4xl font-bold sm:text-5xl">FAQ</h1>
-          <p className="mt-4 text-khaki text-lg">
-            Everything you need to know before storing with us.
-          </p>
+    <main className="min-h-screen bg-parchment">
+      <section className="bg-evergreen text-parchment py-24 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl">
+          <h1 className="font-heading text-4xl font-bold sm:text-5xl leading-tight">
+            {page?.pageHeading ?? "Frequently Asked Questions"}
+          </h1>
+          {page?.pageIntro && (
+            <p className="mt-6 text-lg text-khaki leading-relaxed">{page.pageIntro}</p>
+          )}
         </div>
       </section>
-      <section className="bg-parchment py-20 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center text-evergreen/50">
-          <p className="text-lg">FAQ content coming soon.</p>
+
+      <section className="py-24 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl">
+          {faqs.length > 0 ? (
+            <FaqAccordion faqs={faqs} />
+          ) : (
+            <p className="text-evergreen/60">FAQ content coming soon.</p>
+          )}
         </div>
       </section>
-    </>
+    </main>
   );
 }

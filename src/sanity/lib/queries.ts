@@ -76,6 +76,19 @@ export const servicesQuery = groq`
   *[_type == "service" && isActive == true] | order(order asc) {
     _id,
     title,
+    slug,
+    icon,
+    description,
+    order
+  }
+`;
+
+// Fetch a single service by slug
+export const serviceBySlugQuery = groq`
+  *[_type == "service" && slug.current == $slug && isActive == true][0] {
+    _id,
+    title,
+    slug,
     icon,
     description,
     order
@@ -93,5 +106,91 @@ export const reviewsQuery = groq`
     storedSince,
     photo,
     order
+  }
+`;
+
+// Page singleton queries
+export const homePageQuery = groq`
+  *[_type == "homePage"][0] {
+    heroHeadline,
+    heroSupportText,
+    heroCtaPrimary,
+    heroCtaSecondary,
+    trustStats,
+    solutionHeading,
+    solutionBody,
+    servicesHeading,
+    howItWorksHeading,
+    howItWorksSteps,
+    whySaosHeading,
+    whySaosPoints,
+    founderHeading,
+    founderBody,
+    finalCtaHeading,
+    finalCtaBody
+  }
+`;
+
+export const storageServicesPageQuery = groq`
+  *[_type == "storageServicesPage"][0] { pageHeading, pageIntro, seo }
+`;
+
+export const ourFacilityPageQuery = groq`
+  *[_type == "ourFacilityPage"][0] { pageHeading, pageIntro, galleryHeading, seo }
+`;
+
+export const partnersPageQuery = groq`
+  *[_type == "partnersPage"][0] { pageHeading, pageIntro, seo }
+`;
+
+export const journalPageQuery = groq`
+  *[_type == "journalPage"][0] { pageHeading, pageIntro, seo }
+`;
+
+export const faqPageContentQuery = groq`
+  *[_type == "faqPageContent"][0] { pageHeading, pageIntro, seo }
+`;
+
+export const contactPageQuery = groq`
+  *[_type == "contactPage"][0] { pageHeading, pageIntro, seo }
+`;
+
+export const calculatePageQuery = groq`
+  *[_type == "calculatePage"][0] { pageHeading, pageIntro, seo }
+`;
+
+// Partner collection
+export const partnersQuery = groq`
+  *[_type == "partner" && isActive == true] | order(order asc) {
+    _id,
+    name,
+    logo,
+    description,
+    website,
+    order
+  }
+`;
+
+// Journal posts
+export const postsQuery = groq`
+  *[_type == "post" && isActive == true] | order(publishedAt desc) {
+    _id,
+    title,
+    slug,
+    excerpt,
+    coverImage,
+    publishedAt
+  }
+`;
+
+export const postBySlugQuery = groq`
+  *[_type == "post" && slug.current == $slug && isActive == true][0] {
+    _id,
+    title,
+    slug,
+    excerpt,
+    coverImage,
+    body,
+    publishedAt
   }
 `;
