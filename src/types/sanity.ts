@@ -50,6 +50,17 @@ export interface Service {
   order: number;
 }
 
+export interface Review {
+  _id: string;
+  quote: string;
+  authorName: string;
+  country?: string;
+  vehicle?: string;
+  storedSince?: string;
+  photo?: SanityImage;
+  order: number;
+}
+
 export interface SiteSettings {
   siteName: string;
   tagline?: string;

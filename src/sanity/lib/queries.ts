@@ -81,3 +81,17 @@ export const servicesQuery = groq`
     order
   }
 `;
+
+// Fetch all active reviews ordered by display order
+export const reviewsQuery = groq`
+  *[_type == "review" && isActive == true] | order(order asc) {
+    _id,
+    quote,
+    authorName,
+    country,
+    vehicle,
+    storedSince,
+    photo,
+    order
+  }
+`;

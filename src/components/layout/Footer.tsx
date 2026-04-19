@@ -74,7 +74,7 @@ export default function Footer() {
               </li>
             </ul>
 
-            {/* Social links — placeholders */}
+            {/* Social links */}
             <div className="mt-4 flex gap-4">
               <a
                 href="#"
