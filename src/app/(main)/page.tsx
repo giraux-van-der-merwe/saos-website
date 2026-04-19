@@ -22,32 +22,32 @@ const fallbackServices: Service[] = [
 ];
 
 const fallbackFaqs: Faq[] = [
-  { _id: "1", question: "How long can I leave my vehicle with you?", answer: "Anywhere from one week to multiple years. Most clients store between 3 to 12 months while they are back home between trips. There is no minimum.", order: 1 },
-  { _id: "2", question: "Is it actually safe? Like, really safe?", answer: "Yes. Fenced facility, monitored 24/7, controlled access, located on a quiet road we know well. Your rig is also checked weekly. Security is not just walls; it is noticing when something is off.", order: 2 },
-  { _id: "3", question: "What does it cost?", answer: "Pricing depends on vehicle size, length of stay, and which services you bundle in. Tell us about your trip in the enquiry form and we will send a tailored quote within one business day. A pricing calculator is on the way.", order: 3 },
+  { _id: "1", question: "How long can I leave my vehicle with you?", answer: "Anywhere from one week to multiple years. Most clients store between 3–12 months while they're back home between trips. There's no minimum.", order: 1 },
+  { _id: "2", question: "Is it actually safe? Like, really safe?", answer: "Yes. Fenced facility, monitored 24/7, controlled access, located on a quiet road we know well. Your rig is also checked weekly — security isn't just walls; it's noticing when something is off.", order: 2 },
+  { _id: "3", question: "What does it cost?", answer: "Pricing depends on vehicle size, length of stay, and which services you bundle in. Tell us about your trip in the enquiry form and we'll send a tailored quote within one business day. A pricing calculator is on the way.", order: 3 },
   { _id: "4", question: "Can you collect my vehicle from the port or shipping agent?", answer: "Yes. We work with most of the major shipping agents in Durban, Cape Town and Walvis Bay. We handle the collection, the paperwork, and the drive back to the facility.", order: 4 },
-  { _id: "5", question: "I have never been to South Africa. What if I land and panic?", answer: "Send us your flight details. We will be at OR Tambo with your name on a board. By the time you have cleared customs, your trip is already underway.", order: 5 },
+  { _id: "5", question: "I've never been to South Africa. What if I land and panic?", answer: "Send us your flight details. We'll be at OR Tambo with your name on a board. By the time you've cleared customs, your trip is already underway.", order: 5 },
   { _id: "6", question: "What happens in an emergency back home and I need to extend my stay?", answer: "Email or WhatsApp us. We adjust your booking, send a new schedule, and keep going. No drama, no penalty paperwork.", order: 6 },
-  { _id: "7", question: "Do you store motorbikes? Trailers? Roof tents?", answer: "Yes to all three. Storage is not only for full overland rigs. Many clients leave gear, trailers, or bikes between trips.", order: 7 },
+  { _id: "7", question: "Do you store motorbikes? Trailers? Roof tents?", answer: "Yes to all three. Storage isn't only for full overland rigs — many clients leave gear, trailers, or bikes between trips.", order: 7 },
 ];
 
 const fallbackReviews: Review[] = [
   { _id: "1", quote: "We left our Defender for 11 months between two trips. Came back to a vehicle that started first turn, full tank, washed, with the licence already renewed. We were on the N1 north before lunch.", authorName: "Marie & Pieter", country: "Belgium", vehicle: "Land Rover Defender 110", storedSince: "2023", order: 1 },
   { _id: "2", quote: "Antonie sent me a photo of my Hilux every month. By month four I stopped worrying. By month seven I started planning the next trip from my couch in Sydney.", authorName: "James", country: "Australia", vehicle: "Toyota Hilux", storedSince: "2024", order: 2 },
-  { _id: "3", quote: "I had a customs problem I did not even know existed. The team caught it, fixed it, and emailed me the paperwork. I was 9,000 km away. That is not storage. That is a partner.", authorName: "Tom", country: "UK", vehicle: "Iveco Daily 4x4", storedSince: "2022", order: 3 },
+  { _id: "3", quote: "I had a customs problem I didn't even know existed. The team caught it, fixed it, and emailed me the paperwork. I was 9,000 km away. That's not storage. That's a partner.", authorName: "Tom", country: "UK", vehicle: "Iveco Daily 4x4", storedSince: "2022", order: 3 },
 ];
 
 const steps = [
   { number: "01", title: "Tell us about your trip", body: "Fill in a 2-minute form. Vehicle, dates, what you need beyond storage. We reply same day on weekdays." },
-  { number: "02", title: "Drop off your rig", body: "Bring it to the facility, or arrange a collection. We do a walk-through together so we know exactly what is yours and what is where." },
+  { number: "02", title: "Drop off your rig", body: "Bring it to the facility, or arrange a collection. We do a walk-through together so we know exactly what's yours and what's where." },
   { number: "03", title: "Fly home, get on with life", body: "Monthly check reports land in your inbox. Anything urgent, we WhatsApp before you ask." },
   { number: "04", title: "We pick you up. Your rig is ready.", body: "Land at OR Tambo, hop in our vehicle, sign back in, drive out. Most people are back on the road within 2 hours of touchdown." },
 ];
 
 const differentiators = [
-  { heading: "vs leaving it with a friend", body: "Friends are great. Friends also forget to start the engine for six months, do not have a workshop on-site, and will not answer the customs office. We do all three before breakfast." },
-  { heading: "vs a generic storage yard", body: "Storage yards store cars. We store overland rigs and we know the difference between a Hilux on holiday and a Defender mid-Cairo-to-Cape. The team has actually built, broken, and rebuilt vehicles like yours." },
-  { heading: "vs doing nothing until you land", body: "Every week your vehicle sits unattended is a week of small problems compounding. By the time you fly back in, the problems have cost you a fortnight of your trip. We catch it while you are still at home." },
+  { heading: "vs leaving it with a friend", body: "Friends are great. Friends also forget to start the engine for six months, don't have a workshop on-site, and won't answer the customs office. We do all three before breakfast." },
+  { heading: "vs a generic storage yard", body: "Storage yards store cars. We store overland rigs — and we know the difference between a Hilux on holiday and a Defender mid-Cairo-to-Cape. The team has actually built, broken, and rebuilt vehicles like yours." },
+  { heading: "vs doing nothing until you land", body: "Every week your vehicle sits unattended is a week of small problems compounding. By the time you fly back in, \"I'll deal with it then\" has cost you a fortnight of your trip. We catch it while you're still at home." },
 ];
 
 const facilityPhotos = [
@@ -55,7 +55,7 @@ const facilityPhotos = [
   { src: "/images/facility/20251218_150532.jpg", caption: "Under-cover bays. Your rig sits out of the sun, not under it." },
   { src: "/images/facility/20260211_095053.jpg", caption: "Monthly check in progress. Battery, tyres, fluids, photos." },
   { src: "/images/facility/20260312_140216.jpg", caption: "The workshop. Most things we fix here. The rest goes to people we trust." },
-  { src: "/images/facility/20260313_124939.jpg", caption: "The gate. There is always someone here. That is the point." },
+  { src: "/images/facility/20260313_124939.jpg", caption: "The gate. There's always someone here. That's the point." },
   { src: "/images/facility/IMG_1553.JPG", caption: "Every vehicle gets a proper walk-through at drop-off and pickup." },
 ];
 
@@ -122,7 +122,7 @@ export default async function HomePage() {
                   </a>
                 </div>
                 <p className="mt-4 text-sm text-evergreen/50">
-                  Trusted by overlanders from 14+ countries. Mon to Sat. We answer.
+                  Trusted by overlanders from 14+ countries · Mon–Sat · We answer.
                 </p>
               </div>
             </div>
@@ -168,11 +168,11 @@ export default async function HomePage() {
             Your Land Rover lands in Johannesburg.<br />Your flight home leaves in 8 hours.<br />Now what?
           </h2>
           <div className="mt-8 space-y-5 text-evergreen/80 leading-relaxed">
-            <p>You have shipped your rig 14,000 km. You have burned the leave. You have planned the route across three borders.</p>
-            <p>Then the trip ends and reality kicks in: you are flying home next week, your vehicle is not going with you, and the visa clock starts again the moment you board.</p>
-            <p>Most people figure they will leave it with a friend. A few weeks turns into nine months. The battery dies. The licence expires. The tyres flat-spot. Customs sends a letter nobody opens.</p>
-            <p>By the time you are back at OR Tambo with a fresh duffel bag, the trip you came for is already half-eaten by problems you could have handed to someone else.</p>
-            <p className="font-semibold text-evergreen">There is a better way to do this.</p>
+            <p>You've shipped your rig 14,000 km. You've burned the leave. You've planned the route across three borders.</p>
+            <p>Then the trip ends and reality kicks in: you're flying home next week, your vehicle isn't going with you, and the visa clock starts again the moment you board.</p>
+            <p>Most people figure they'll "leave it with a friend." A few weeks turns into nine months. The battery dies. The licence expires. The tyres flat-spot. Customs sends a letter nobody opens.</p>
+            <p>By the time you're back at OR Tambo with a fresh duffel bag, the trip you came for is already half-eaten by problems you could have handed to someone else.</p>
+            <p className="font-semibold text-evergreen">There's a better way to do this.</p>
           </div>
         </div>
       </section>
@@ -185,7 +185,7 @@ export default async function HomePage() {
             Think of us less as storage.<br />More as your basecamp on the continent.
           </h2>
           <div className="mt-8 space-y-5 text-khaki leading-relaxed">
-            <p>Southern Africa Overlander Storage was built by people who have done the trip, for people who are still in the middle of theirs.</p>
+            <p>Southern Africa Overlander Storage was built by people who've done the trip — for people who are still in the middle of theirs.</p>
             <p>Drop your vehicle off the day before your flight. We pick you up at OR Tambo when you fly back in. Your rig is washed, charged, licensed, serviced, and parked exactly where you left it.</p>
             <p>No friend doing you a favour. No yard with a padlock and a prayer. A small team that knows your vehicle by name and answers the WhatsApp at 7am.</p>
           </div>
@@ -200,7 +200,7 @@ export default async function HomePage() {
         <div className="mx-auto max-w-7xl">
           <p className="text-xs font-semibold uppercase tracking-widest text-khaki mb-3">Services</p>
           <h2 className="font-heading text-3xl font-bold text-evergreen sm:text-4xl max-w-2xl leading-tight">
-            Storage is just the start. Let us make sure you are ready.
+            Storage is just the start. Let's make sure you're ready.
           </h2>
           <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((s) => (
@@ -212,7 +212,7 @@ export default async function HomePage() {
             ))}
           </div>
           <p className="mt-8 text-sm text-evergreen/60 max-w-2xl">
-            Pick what you need. Skip what you do not. Most clients bundle storage with pickup and monthly checks. Your enquiry is where we figure that out together.
+            Pick what you need. Skip what you don't. Most clients bundle storage with pickup and monthly checks — your enquiry is where we figure that out together.
           </p>
           <Link
             href="/calculate"
@@ -256,7 +256,7 @@ export default async function HomePage() {
           <h2 className="font-heading text-3xl font-bold text-evergreen sm:text-4xl max-w-2xl leading-tight">
             Why overlanders pick us over the alternatives.
           </h2>
-          <p className="mt-3 text-evergreen/60 max-w-xl">There are not many people doing this in Southern Africa. Here is the difference between us and the rest.</p>
+          <p className="mt-3 text-evergreen/60 max-w-xl">There aren't many people doing this in Southern Africa. Here's the difference between us and the rest.</p>
           <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-3">
             {differentiators.map((d) => (
               <div key={d.heading} className="border-t-2 border-cinnamon pt-6">
@@ -274,7 +274,7 @@ export default async function HomePage() {
           <h2 className="font-heading text-3xl font-bold sm:text-4xl max-w-xl leading-tight">
             The kind of people who trust us with their rig.
           </h2>
-          <p className="mt-3 text-khaki">Real overlanders. Real trips. Real reasons they are back for round two.</p>
+          <p className="mt-3 text-khaki">Real overlanders. Real trips. Real reasons they're back for round two.</p>
           <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3">
             {reviews.map((r) => (
               <div key={r._id} className="bg-pine-teal rounded-xl p-6 flex flex-col gap-4">
@@ -297,7 +297,7 @@ export default async function HomePage() {
           </div>
           <p className="mt-8 text-sm text-khaki">
             Want to talk to one of them before you book?{" "}
-            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-cinnamon hover:underline">We will connect you.</a>
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-cinnamon hover:underline">We'll connect you.</a>
           </p>
         </div>
       </section>
@@ -332,11 +332,11 @@ export default async function HomePage() {
             We are overlanders too.<br />That is the whole reason this exists.
           </h2>
           <div className="mt-8 space-y-5 text-khaki leading-relaxed">
-            <p>Hi, Antonie here.</p>
+            <p>Hi — Antonie here.</p>
             <p>A few years back I parked my own rig in Joburg between trips. Spent the entire flight home worrying about it. Spent half the next trip un-doing what nine months of neglect had done to it.</p>
             <p>So we built the place I wished existed.</p>
             <p>The team here are overlanders, mechanics, and South Africans who actually like solving problems before they become emergencies. We answer the phone. We send the photo. We pick you up at the airport. We get your paperwork sorted before you land.</p>
-            <p>Because the time you have saved for this trip is short. And we would rather you spent it driving than fixing.</p>
+            <p>Because the time you've saved for this trip is short. And we'd rather you spent it driving than fixing.</p>
           </div>
           <div className="mt-8 h-48 w-full rounded-xl bg-evergreen/40 flex items-center justify-center text-khaki text-sm">
             Team photo coming soon
@@ -352,7 +352,7 @@ export default async function HomePage() {
         <div className="mx-auto max-w-3xl">
           <p className="text-xs font-semibold uppercase tracking-widest text-khaki mb-3">One more thing.</p>
           <h2 className="font-heading text-3xl font-bold text-evergreen sm:text-4xl max-w-2xl leading-tight">
-            The stuff most people only realise they need once they are already gone.
+            The stuff most people only realise they need once they're already gone.
           </h2>
           <ul className="mt-8 space-y-3">
             {extraServices.map((s) => (
@@ -363,7 +363,7 @@ export default async function HomePage() {
             ))}
           </ul>
           <p className="mt-6 text-sm text-evergreen/60">
-            If you are not sure whether we do it, ask. Half the things on this list started as a client asking "can you help with..."
+            If you're not sure whether we do it, ask. Half the things on this list started as a client asking "can you help with..."
           </p>
           <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="mt-6 inline-block border border-evergreen text-evergreen px-8 py-3 rounded-lg font-semibold hover:bg-evergreen hover:text-parchment transition-colors">
             Ask us about a specific service
@@ -381,7 +381,7 @@ export default async function HomePage() {
             <FaqAccordion faqs={faqs} />
           </div>
           <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="mt-8 inline-block border border-parchment text-parchment px-8 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors">
-            Do not see your question? WhatsApp us
+            Don't see your question? WhatsApp us
           </a>
         </div>
       </section>
@@ -393,7 +393,7 @@ export default async function HomePage() {
             Your next African trip starts the day you book the storage.
           </h2>
           <p className="mt-4 text-parchment/80 max-w-xl mx-auto leading-relaxed">
-            Tell us about your vehicle and your dates. We will come back to you within one business day with a tailored plan, a quote, and a real name to ask for when you land.
+            Tell us about your vehicle and your dates. We'll come back to you within one business day with a tailored plan, a quote, and a real name to ask for when you land.
           </p>
           <div className="mt-8 flex flex-wrap gap-4 justify-center">
             <Link href="/contact" className="inline-block bg-evergreen text-parchment px-10 py-3 rounded-lg font-semibold hover:bg-pine-teal transition-colors">
