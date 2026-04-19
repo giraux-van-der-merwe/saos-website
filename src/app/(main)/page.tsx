@@ -168,29 +168,10 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── Problem agitation ── */}
-      <section className="bg-parchment py-24 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-widest text-khaki mb-3">
-            The part of overlanding nobody talks about.
-          </p>
-          <h2 className="font-heading text-3xl font-bold text-evergreen sm:text-4xl leading-tight">
-            Your Land Rover lands in Johannesburg.<br />Your flight home leaves in 8 hours.<br />Now what?
-          </h2>
-          <div className="mt-8 space-y-5 text-evergreen/80 leading-relaxed">
-            <p>You've shipped your rig 14,000 km. You've burned the leave. You've planned the route across three borders.</p>
-            <p>Then the trip ends and reality kicks in: you're flying home next week, your vehicle isn't going with you, and the visa clock starts again the moment you board.</p>
-            <p>Most people figure they'll "leave it with a friend." A few weeks turns into nine months. The battery dies. The licence expires. The tyres flat-spot. Customs sends a letter nobody opens.</p>
-            <p>By the time you're back at OR Tambo with a fresh duffel bag, the trip you came for is already half-eaten by problems you could have handed to someone else.</p>
-            <p className="font-semibold text-evergreen">There's a better way to do this.</p>
-          </div>
-        </div>
-      </section>
-
       {/* ── Solution ── */}
       <section className="bg-evergreen text-parchment py-24 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-widest text-cinnamon mb-3">The fix.</p>
+          <p className="text-xs font-semibold uppercase tracking-widest text-cinnamon mb-3">Your African basecamp.</p>
           <h2 className="font-heading text-3xl font-bold sm:text-4xl leading-tight">
             Think of us less as storage.<br />More as your basecamp on the continent.
           </h2>
