@@ -89,20 +89,22 @@ export default async function HomePage() {
       {/* ── Hero: text above, image below, fits viewport ── */}
       <div className="min-h-screen flex flex-col bg-parchment">
         {/* Text area */}
-        <div className="flex-none px-4 pt-10 pb-8 sm:px-6 lg:px-8">
+        <div className="flex-none px-4 pt-2 pb-8 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
-            <p className="text-sm font-semibold uppercase tracking-widest text-cinnamon mb-5">
+            <p className="text-sm font-semibold uppercase tracking-widest text-cinnamon mb-4">
               Overlanding Vehicle Storage in Johannesburg
             </p>
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-end">
-              <h1 className="font-heading text-4xl font-bold text-evergreen leading-tight sm:text-5xl">
+              {/* Col 1: H1 — left, unchanged */}
+              <h1 className="font-heading text-4xl font-bold text-evergreen sm:text-5xl" style={{ lineHeight: 1.1 }}>
                 Park your rig.<br />
                 Catch your flight.<br />
                 <span className="text-cinnamon">Come back ready to roll.</span>
               </h1>
-              <div className="lg:pb-2">
-                <p className="text-base text-evergreen/70 leading-relaxed max-w-md">
-                  Secure, under-watch storage 28 km from O.R. Tambo plus the airport pickups, services, and on-the-ground help that keep your African overland trip alive between flights home.
+              {/* Col 2: support text — pushed right to align with nav right edge */}
+              <div className="lg:pl-10 lg:pr-8">
+                <p className="text-base text-evergreen/70 leading-relaxed">
+                  Secure, under-watch storage 28 km from O.R. Tambo — plus the airport pickups, services, and on-the-ground help that keep your African overland trip alive between flights home.
                 </p>
                 <div className="mt-6 flex flex-wrap gap-4">
                   <Link
