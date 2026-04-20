@@ -5,6 +5,9 @@ import { sanityClient } from "@/sanity/lib/client";
 import { faqsQuery, servicesQuery, reviewsQuery, homePageQuery } from "@/sanity/lib/queries";
 import type { Faq, Service, Review, HomePage } from "@/types/sanity";
 import FaqAccordion from "@/components/homepage/FaqAccordion";
+import { HeroHeadline } from "@/components/homepage/HeroHeadline";
+import { HeroSupportReveal } from "@/components/homepage/HeroSupportReveal";
+import { FadeUp, StaggerContainer, StaggerItem, MotionButton } from "@/components/ui/motion";
 
 export const metadata: Metadata = {
   title: "Vehicle Storage for Overlanders in Johannesburg | SAOS",
@@ -103,41 +106,41 @@ export default async function HomePage() {
               {/* At lg+:   support left, H1 right   */}
 
               {/* Support text */}
-              <div className="order-2 lg:order-1 lg:pr-8">
-                <div className="border-t border-evergreen/15 hidden lg:block" style={{ marginBottom: '1rem' }} />
-                <p className="text-base text-evergreen/70 leading-relaxed">
-                  {home.heroSupportText ?? "Secure, under-watch storage 28 km from O.R. Tambo — plus the airport pickups, services, and on-the-ground help that keep your African overland trip alive between flights home."}
-                </p>
-                <div className="mt-6 flex gap-4">
-                  <Link
-                    href="/calculate"
-                    data-red-cta
-                    className="flex-1 text-center bg-cinnamon text-parchment px-7 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-colors whitespace-nowrap"
-                  >
-                    <span className="min-[491px]:hidden">Calculate</span>
-                    <span className="hidden min-[491px]:inline">{home.heroCtaPrimary ?? "Calculate my storage"}</span>
-                  </Link>
-                  <a
-                    href={WHATSAPP_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 text-center border border-evergreen text-evergreen px-7 py-3 rounded-lg font-semibold hover:bg-evergreen hover:text-parchment transition-colors whitespace-nowrap"
-                  >
-                    <span className="min-[491px]:hidden">WhatsApp us</span>
-                    <span className="hidden min-[491px]:inline">{home.heroCtaSecondary ?? "WhatsApp the team"}</span>
-                  </a>
+              <HeroSupportReveal>
+                <div className="order-2 lg:order-1 lg:pr-8">
+                  <div className="border-t border-evergreen/15 hidden lg:block" style={{ marginBottom: '1rem' }} />
+                  <p className="text-base text-evergreen/70 leading-relaxed">
+                    {home.heroSupportText ?? "Secure, under-watch storage 28 km from O.R. Tambo — plus the airport pickups, services, and on-the-ground help that keep your African overland trip alive between flights home."}
+                  </p>
+                  <div className="mt-6 flex gap-4">
+                    <MotionButton className="flex-1">
+                      <Link
+                        href="/calculate"
+                        data-red-cta
+                        className="hero-cta-pulse block text-center bg-cinnamon text-parchment px-7 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-colors whitespace-nowrap"
+                      >
+                        <span className="min-[491px]:hidden">Calculate</span>
+                        <span className="hidden min-[491px]:inline">{home.heroCtaPrimary ?? "Calculate my storage"}</span>
+                      </Link>
+                    </MotionButton>
+                    <a
+                      href={WHATSAPP_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 text-center border border-evergreen text-evergreen px-7 py-3 rounded-lg font-semibold hover:bg-evergreen hover:text-parchment transition-colors whitespace-nowrap"
+                    >
+                      <span className="min-[491px]:hidden">WhatsApp us</span>
+                      <span className="hidden min-[491px]:inline">{home.heroCtaSecondary ?? "WhatsApp the team"}</span>
+                    </a>
+                  </div>
+                  <p className="mt-3 text-sm text-evergreen/50">
+                    Trusted by overlanders from 14+ countries · Mon–Sat · We answer.
+                  </p>
                 </div>
-                <p className="mt-3 text-sm text-evergreen/50">
-                  Trusted by overlanders from 14+ countries · Mon–Sat · We answer.
-                </p>
-              </div>
+              </HeroSupportReveal>
 
-              {/* H1 — structure and color are intentionally hardcoded as brand anchor */}
-              <h1 className="order-1 lg:order-2 font-heading text-4xl font-bold text-evergreen sm:text-5xl lg:pl-10" style={{ lineHeight: 1.1, paddingTop: 'calc(1rem + 2px)' }}>
-                Park your rig.<br />
-                <span className="hero-catch-line hidden lg:inline">Catch your flight.<br /></span>
-                <span className="text-cinnamon">Come back ready to roll.</span>
-              </h1>
+              {/* H1 — sequential reveal on page load */}
+              <HeroHeadline />
             </div>
           </div>
         </div>
@@ -156,7 +159,7 @@ export default async function HomePage() {
 
       {/* ── Trust strip ── */}
       <section className="bg-pine-teal text-parchment py-8 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl grid grid-cols-2 gap-6 sm:grid-cols-4">
+        <StaggerContainer className="mx-auto max-w-7xl grid grid-cols-2 gap-6 sm:grid-cols-4">
           {(home.trustStats && home.trustStats.length > 0
             ? home.trustStats
             : [
@@ -166,22 +169,22 @@ export default async function HomePage() {
                 { value: "Personal handover", label: "Every vehicle, every time" },
               ]
           ).map((item) => (
-            <div key={item.value}>
+            <StaggerItem key={item.value}>
               <p className="text-xl font-bold text-parchment">{item.value}</p>
               <p className="text-base text-khaki mt-1">{item.label}</p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </section>
 
       {/* ── Solution ── */}
       <section className="bg-evergreen text-parchment py-24 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-widest text-cinnamon mb-3">Your African basecamp.</p>
-          <h2 className="font-heading text-3xl font-bold sm:text-4xl leading-tight">
+          <FadeUp as="p" className="text-xs font-semibold uppercase tracking-widest text-cinnamon mb-3">Your African basecamp.</FadeUp>
+          <FadeUp as="h2" delay={0.05} className="font-heading text-3xl font-bold sm:text-4xl leading-tight">
             {home.solutionHeading ?? <>Think of us less as storage.<br />More as your basecamp on the continent.</>}
-          </h2>
-          <div className="mt-8 space-y-5 text-khaki leading-relaxed">
+          </FadeUp>
+          <FadeUp delay={0.1} className="mt-8 space-y-5 text-khaki leading-relaxed">
             {home.solutionBody ? (
               home.solutionBody.split("\n\n").map((para, i) => <p key={i}>{para}</p>)
             ) : (
@@ -191,21 +194,23 @@ export default async function HomePage() {
                 <p>No friend doing you a favour. No yard with a padlock and a prayer. A small team that knows your vehicle by name and answers the WhatsApp at 7am.</p>
               </>
             )}
-          </div>
-          <Link href="/contact" className="mt-8 inline-block border border-parchment text-parchment px-8 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors">
-            Tell us about your trip
-          </Link>
+          </FadeUp>
+          <FadeUp delay={0.15} className="mt-8">
+            <Link href="/contact" className="inline-block border border-parchment text-parchment px-8 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors">
+              Tell us about your trip
+            </Link>
+          </FadeUp>
         </div>
       </section>
 
       {/* ── Services (CMS) ── */}
       <section className="bg-parchment py-24 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <p className="text-xs font-semibold uppercase tracking-widest text-khaki mb-3">Services</p>
-          <h2 className="font-heading text-3xl font-bold text-evergreen sm:text-4xl max-w-2xl leading-tight">
+          <FadeUp as="p" className="text-xs font-semibold uppercase tracking-widest text-khaki mb-3">Services</FadeUp>
+          <FadeUp as="h2" delay={0.05} className="font-heading text-3xl font-bold text-evergreen sm:text-4xl max-w-2xl leading-tight">
             {home.servicesHeading ?? "Storage is just the start. Let's make sure you're ready."}
-          </h2>
-          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          </FadeUp>
+          <StaggerContainer className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((s) => {
               const cardContent = (
                 <>
@@ -217,94 +222,105 @@ export default async function HomePage() {
                   )}
                 </>
               );
-              return s.slug?.current ? (
-                <Link
-                  key={s._id}
-                  href={`/storage-services/${s.slug.current}`}
-                  className="bg-white rounded-xl p-6 border border-khaki/20 shadow-sm hover:shadow-md hover:border-cinnamon/40 transition-all"
-                >
-                  {cardContent}
-                </Link>
-              ) : (
-                <div key={s._id} className="bg-white rounded-xl p-6 border border-khaki/20 shadow-sm">
-                  {cardContent}
-                </div>
+              return (
+                <StaggerItem key={s._id} withHoverLift>
+                  {s.slug?.current ? (
+                    <Link
+                      href={`/storage-services/${s.slug.current}`}
+                      className="block h-full bg-white rounded-xl p-6 border border-khaki/20 shadow-sm hover:shadow-md hover:border-cinnamon/40 transition-all"
+                    >
+                      {cardContent}
+                    </Link>
+                  ) : (
+                    <div className="h-full bg-white rounded-xl p-6 border border-khaki/20 shadow-sm">
+                      {cardContent}
+                    </div>
+                  )}
+                </StaggerItem>
               );
             })}
-          </div>
-          <p className="mt-8 text-sm text-evergreen/60 max-w-2xl">
+          </StaggerContainer>
+          <FadeUp delay={0.1} className="mt-8 text-sm text-evergreen/60 max-w-2xl">
             Pick what you need. Skip what you don't. Most clients bundle storage with pickup and monthly checks — your enquiry is where we figure that out together.
-          </p>
-          <Link
-            href="/calculate"
-            data-red-cta
-            className="mt-6 inline-block bg-cinnamon text-parchment px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-colors"
-          >
-            Calculate my Storage
-          </Link>
+          </FadeUp>
+          <FadeUp delay={0.15} className="mt-6">
+            <MotionButton>
+              <Link
+                href="/calculate"
+                data-red-cta
+                className="inline-block bg-cinnamon text-parchment px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-colors"
+              >
+                Calculate my Storage
+              </Link>
+            </MotionButton>
+          </FadeUp>
         </div>
       </section>
 
       {/* ── How it works ── */}
       <section className="bg-pine-teal text-parchment py-24 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <p className="text-xs font-semibold uppercase tracking-widest text-khaki mb-3">The whole thing, in 4 steps.</p>
-          <h2 className="font-heading text-3xl font-bold sm:text-4xl max-w-xl leading-tight">
+          <FadeUp as="p" className="text-xs font-semibold uppercase tracking-widest text-khaki mb-3">The whole thing, in 4 steps.</FadeUp>
+          <FadeUp as="h2" delay={0.05} className="font-heading text-3xl font-bold sm:text-4xl max-w-xl leading-tight">
             {home.howItWorksHeading ?? "Booking with us is the easy part of your trip."}
-          </h2>
-          <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          </FadeUp>
+          <StaggerContainer className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {(home.howItWorksSteps && home.howItWorksSteps.length > 0
               ? home.howItWorksSteps.map((s) => ({ number: s.stepNumber, title: s.title, body: s.description }))
               : steps
             ).map((step) => (
-              <div key={step.number}>
+              <StaggerItem key={step.number}>
                 <p className="font-heading text-5xl font-bold text-cinnamon opacity-60">{step.number}</p>
                 <h3 className="font-heading text-lg font-semibold text-parchment mt-2 mb-2">{step.title}</h3>
                 <p className="text-sm text-khaki leading-relaxed">{step.body}</p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
-          <Link
-            href="/calculate"
-            data-red-cta
-            className="mt-12 inline-block bg-cinnamon text-parchment px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-colors"
-          >
-            Calculate my storage
-          </Link>
+          </StaggerContainer>
+          <FadeUp delay={0.1} className="mt-12">
+            <MotionButton>
+              <Link
+                href="/calculate"
+                data-red-cta
+                className="inline-block bg-cinnamon text-parchment px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-colors"
+              >
+                Calculate my storage
+              </Link>
+            </MotionButton>
+          </FadeUp>
         </div>
       </section>
 
       {/* ── Why SAOS ── */}
       <section className="bg-parchment py-24 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <h2 className="font-heading text-3xl font-bold text-evergreen sm:text-4xl max-w-2xl leading-tight">
+          <FadeUp as="h2" className="font-heading text-3xl font-bold text-evergreen sm:text-4xl max-w-2xl leading-tight">
             {home.whySaosHeading ?? "Why overlanders pick us over the alternatives."}
-          </h2>
-          <p className="mt-3 text-evergreen/60 max-w-xl">There aren't many people doing this in Southern Africa. Here's the difference between us and the rest.</p>
-          <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-3">
+          </FadeUp>
+          <FadeUp delay={0.05} className="mt-3 text-evergreen/60 max-w-xl">There aren't many people doing this in Southern Africa. Here's the difference between us and the rest.</FadeUp>
+          <StaggerContainer className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-3">
             {(home.whySaosPoints && home.whySaosPoints.length > 0
               ? home.whySaosPoints.map((p) => ({ heading: p.title, body: p.description }))
               : differentiators
             ).map((d) => (
-              <div key={d.heading} className="border-t-2 border-cinnamon pt-6">
+              <StaggerItem key={d.heading} className="border-t-2 border-cinnamon pt-6">
                 <h3 className="font-heading text-lg font-semibold text-evergreen mb-3">{d.heading}</h3>
                 <p className="text-sm text-evergreen/70 leading-relaxed">{d.body}</p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* ── Reviews (CMS) ── */}
       <section className="bg-evergreen text-parchment py-24 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <h2 className="font-heading text-3xl font-bold sm:text-4xl max-w-xl leading-tight">
+          <FadeUp as="h2" className="font-heading text-3xl font-bold sm:text-4xl max-w-xl leading-tight">
             The kind of people who trust us with their rig.
-          </h2>
-          <p className="mt-3 text-khaki">Real overlanders. Real trips. Real reasons they're back for round two.</p>
-          <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3">
+          </FadeUp>
+          <FadeUp delay={0.05} className="mt-3 text-khaki">Real overlanders. Real trips. Real reasons they're back for round two.</FadeUp>
+          <StaggerContainer className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3">
             {reviews.map((r) => (
-              <div key={r._id} className="bg-pine-teal rounded-xl p-6 flex flex-col gap-4">
+              <StaggerItem key={r._id} className="bg-pine-teal rounded-xl p-6 flex flex-col gap-4">
                 <div className="h-14 w-14 rounded-full bg-khaki/30 flex items-center justify-center text-2xl">
                   {r.photo ? (
                     <Image src={r.photo.asset as string} alt={r.authorName} fill className="object-cover rounded-full" />
@@ -319,45 +335,50 @@ export default async function HomePage() {
                     <p>{[r.vehicle, r.storedSince ? `Stored since ${r.storedSince}` : ""].filter(Boolean).join(" · ")}</p>
                   )}
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
-          <p className="mt-8 text-sm text-khaki">
+          </StaggerContainer>
+          <FadeUp delay={0.1} className="mt-8 text-sm text-khaki">
             Want to talk to one of them before you book?{" "}
             <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-cinnamon hover:underline">We'll connect you.</a>
-          </p>
+          </FadeUp>
         </div>
       </section>
 
       {/* ── Facility gallery ── */}
       <section className="bg-parchment py-24 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <h2 className="font-heading text-3xl font-bold text-evergreen sm:text-4xl max-w-xl leading-tight">
+          <FadeUp as="h2" className="font-heading text-3xl font-bold text-evergreen sm:text-4xl max-w-xl leading-tight">
             Take a look at where your vehicle will live.
-          </h2>
-          <p className="mt-3 text-evergreen/60 max-w-xl">Most decisions happen here. We get it. So have a proper look.</p>
-          <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          </FadeUp>
+          <FadeUp delay={0.05} className="mt-3 text-evergreen/60 max-w-xl">Most decisions happen here. We get it. So have a proper look.</FadeUp>
+          <StaggerContainer className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {facilityPhotos.map((photo) => (
-              <div key={photo.src} className="group relative overflow-hidden rounded-xl aspect-[4/3] bg-khaki/20">
-                <Image src={photo.src} alt={photo.caption} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-evergreen/0 group-hover:bg-evergreen/70 transition-colors duration-300 flex items-end p-4">
-                  <p className="text-parchment text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 leading-snug">{photo.caption}</p>
+              <StaggerItem key={photo.src}>
+                {/* group class stays on inner div so CSS group-hover overlays work correctly */}
+                <div className="group relative overflow-hidden rounded-xl aspect-[4/3] bg-khaki/20">
+                  <Image src={photo.src} alt={photo.caption} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-evergreen/0 group-hover:bg-evergreen/70 transition-colors duration-300 flex items-end p-4">
+                    <p className="text-parchment text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 leading-snug">{photo.caption}</p>
+                  </div>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
-          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="mt-8 inline-block border border-evergreen text-evergreen px-8 py-3 rounded-lg font-semibold hover:bg-evergreen hover:text-parchment transition-colors">
-            Want a video walkthrough? Ask for one
-          </a>
+          </StaggerContainer>
+          <FadeUp delay={0.1} className="mt-8">
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-block border border-evergreen text-evergreen px-8 py-3 rounded-lg font-semibold hover:bg-evergreen hover:text-parchment transition-colors">
+              Want a video walkthrough? Ask for one
+            </a>
+          </FadeUp>
         </div>
       </section>
 
       {/* ── Founder story ── */}
       <section className="bg-pine-teal text-parchment py-24 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl">
-          <h2 className="font-heading text-3xl font-bold sm:text-4xl leading-tight">
+          <FadeUp as="h2" className="font-heading text-3xl font-bold sm:text-4xl leading-tight">
             {home.founderHeading ?? <>We are overlanders too.<br />That is the whole reason this exists.</>}
-          </h2>
+          </FadeUp>
           <div className="mt-8 space-y-5 text-khaki leading-relaxed">
             {home.founderBody ? (
               home.founderBody.split("\n\n").map((para, i) => <p key={i}>{para}</p>)
@@ -383,10 +404,10 @@ export default async function HomePage() {
       {/* ── Beyond storage ── */}
       <section className="bg-parchment py-24 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-widest text-khaki mb-3">One more thing.</p>
-          <h2 className="font-heading text-3xl font-bold text-evergreen sm:text-4xl max-w-2xl leading-tight">
+          <FadeUp as="p" className="text-xs font-semibold uppercase tracking-widest text-khaki mb-3">One more thing.</FadeUp>
+          <FadeUp as="h2" delay={0.05} className="font-heading text-3xl font-bold text-evergreen sm:text-4xl max-w-2xl leading-tight">
             The stuff most people only realise they need once they're already gone.
-          </h2>
+          </FadeUp>
           <ul className="mt-8 space-y-3">
             {extraServices.map((s) => (
               <li key={s} className="flex items-start gap-3 text-evergreen/80">
@@ -407,9 +428,9 @@ export default async function HomePage() {
       {/* ── FAQ (CMS) ── */}
       <section className="bg-evergreen text-parchment py-24 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl">
-          <h2 className="font-heading text-3xl font-bold sm:text-4xl max-w-xl leading-tight">
+          <FadeUp as="h2" className="font-heading text-3xl font-bold sm:text-4xl max-w-xl leading-tight">
             The questions everyone asks before booking.
-          </h2>
+          </FadeUp>
           <div className="mt-10">
             <FaqAccordion faqs={faqs} />
           </div>
@@ -422,21 +443,25 @@ export default async function HomePage() {
       {/* ── Final CTA ── */}
       <section className="bg-cinnamon text-parchment py-24 px-4 sm:px-6 lg:px-8 text-center">
         <div className="mx-auto max-w-3xl">
-          <h2 className="font-heading text-3xl font-bold sm:text-4xl leading-tight">
+          <FadeUp as="h2" className="font-heading text-3xl font-bold sm:text-4xl leading-tight">
             {home.finalCtaHeading ?? "Your next African trip starts the day you book the storage."}
-          </h2>
-          <p className="mt-4 text-parchment/80 max-w-xl mx-auto leading-relaxed">
+          </FadeUp>
+          <FadeUp delay={0.05} className="mt-4 text-parchment/80 max-w-xl mx-auto leading-relaxed">
             {home.finalCtaBody ?? "Tell us about your vehicle and your dates. We'll come back to you within one business day with a tailored plan, a quote, and a real name to ask for when you land."}
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4 justify-center">
-            <Link href="/calculate" className="inline-block bg-evergreen text-parchment px-10 py-3 rounded-lg font-semibold hover:bg-pine-teal transition-colors">
-              Calculate my storage
-            </Link>
-            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-block border border-parchment text-parchment px-10 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors">
-              WhatsApp +27 61 455 8784
-            </a>
-          </div>
-          <p className="mt-4 text-sm text-parchment/70">No deposit to enquire. No pushy follow-ups. Just an answer.</p>
+          </FadeUp>
+          <FadeUp delay={0.1} className="mt-8 flex flex-wrap gap-4 justify-center">
+            <MotionButton>
+              <Link href="/calculate" className="inline-block bg-evergreen text-parchment px-10 py-3 rounded-lg font-semibold hover:bg-pine-teal transition-colors">
+                Calculate my storage
+              </Link>
+            </MotionButton>
+            <MotionButton>
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-block border border-parchment text-parchment px-10 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors">
+                WhatsApp +27 61 455 8784
+              </a>
+            </MotionButton>
+          </FadeUp>
+          <FadeUp delay={0.15} className="mt-4 text-sm text-parchment/70">No deposit to enquire. No pushy follow-ups. Just an answer.</FadeUp>
         </div>
       </section>
     </>
