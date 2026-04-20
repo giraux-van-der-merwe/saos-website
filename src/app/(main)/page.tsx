@@ -110,12 +110,12 @@ export default async function HomePage() {
                 </p>
                 <div className="mt-6 flex gap-4">
                   <Link
-                    href="/contact"
+                    href="/calculate"
                     data-red-cta
                     className="flex-1 text-center bg-cinnamon text-parchment px-7 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-colors whitespace-nowrap"
                   >
-                    <span className="min-[491px]:hidden">Enquire</span>
-                    <span className="hidden min-[491px]:inline">{home.heroCtaPrimary ?? "Enquire about storage"}</span>
+                    <span className="min-[491px]:hidden">Calculate</span>
+                    <span className="hidden min-[491px]:inline">{home.heroCtaPrimary ?? "Calculate my storage"}</span>
                   </Link>
                   <a
                     href={WHATSAPP_URL}
@@ -132,17 +132,11 @@ export default async function HomePage() {
                 </p>
               </div>
 
-              {/* H1 */}
+              {/* H1 — structure and color are intentionally hardcoded as brand anchor */}
               <h1 className="order-1 lg:order-2 font-heading text-4xl font-bold text-evergreen sm:text-5xl lg:pl-10" style={{ lineHeight: 1.1, paddingTop: 'calc(1rem + 2px)' }}>
-                {home.heroHeadline ? (
-                  home.heroHeadline
-                ) : (
-                  <>
-                    Park your rig.<br />
-                    <span className="hero-catch-line hidden lg:inline">Catch your flight.<br /></span>
-                    <span className="text-cinnamon">Come back ready to roll.</span>
-                  </>
-                )}
+                Park your rig.<br />
+                <span className="hero-catch-line hidden lg:inline">Catch your flight.<br /></span>
+                <span className="text-cinnamon">Come back ready to roll.</span>
               </h1>
             </div>
           </div>
@@ -271,11 +265,11 @@ export default async function HomePage() {
             ))}
           </div>
           <Link
-            href="/contact"
+            href="/calculate"
             data-red-cta
             className="mt-12 inline-block bg-cinnamon text-parchment px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-colors"
           >
-            Start step 1, enquire now
+            Calculate my storage
           </Link>
         </div>
       </section>
@@ -435,8 +429,8 @@ export default async function HomePage() {
             {home.finalCtaBody ?? "Tell us about your vehicle and your dates. We'll come back to you within one business day with a tailored plan, a quote, and a real name to ask for when you land."}
           </p>
           <div className="mt-8 flex flex-wrap gap-4 justify-center">
-            <Link href="/contact" className="inline-block bg-evergreen text-parchment px-10 py-3 rounded-lg font-semibold hover:bg-pine-teal transition-colors">
-              Enquire about storage
+            <Link href="/calculate" className="inline-block bg-evergreen text-parchment px-10 py-3 rounded-lg font-semibold hover:bg-pine-teal transition-colors">
+              Calculate my storage
             </Link>
             <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-block border border-parchment text-parchment px-10 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors">
               WhatsApp +27 61 455 8784
