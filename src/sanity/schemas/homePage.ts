@@ -5,7 +5,7 @@ export const homePageSchema = defineType({
   title: "Home Page",
   type: "document",
   fields: [
-    defineField({ name: "_title", title: "Document Label", type: "string", readOnly: true, initialValue: "Home Page" }),
+    defineField({ name: "documentLabel", title: "Document Label", type: "string", readOnly: true, initialValue: "Home Page" }),
 
     // Hero
     defineField({ name: "heroHeadline", title: "Hero Headline", type: "string" }),
