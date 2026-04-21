@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 const fallbackServices: Service[] = [
-  { _id: "1", title: "Secure storage", icon: "", description: "Monitored, fenced, under-cover bays. Your vehicle is checked, not just parked.", order: 1 },
+  { _id: "1", title: "Secure storage", icon: "", description: "Your rig lives inside a repurposed aircraft hangar, in a gated fly-in estate. Checked, not just parked.", order: 1 },
   { _id: "2", title: "Airport pickup and drop-off", icon: "", description: "Land tired. Skip the Uber. We meet you at OR Tambo and have you at the rig in 35 minutes.", order: 2 },
   { _id: "3", title: "Monthly vehicle checks", icon: "", description: "Battery turned over, tyres rotated, fluids checked. We send you the photo so you sleep easy on the long-haul.", order: 3 },
   { _id: "4", title: "Wash and detail before pickup", icon: "", description: "Show up to a clean rig. Not the dust-bowl you parked nine months ago.", order: 4 },
@@ -48,14 +48,14 @@ const steps = [
 ];
 
 const differentiators = [
-  { heading: "vs leaving it with a friend", body: "Friends are great. Friends also forget to start the engine for six months, don't have a workshop on-site, and won't answer the customs office. We do all three before breakfast." },
-  { heading: "vs a generic storage yard", body: "Storage yards store cars. We store overland rigs — and we know the difference between a Hilux on holiday and a Defender mid-Cairo-to-Cape. The team has actually built, broken, and rebuilt vehicles like yours." },
+  { heading: "vs leaving it with a friend", body: "Friends are great. Friends also forget to start the engine for six months, won't double-check after your car was at the workshop, and won't answer the customs office. We do all three as part of the job." },
+  { heading: "vs a generic storage yard", body: "Storage yards store cars. We store overland rigs — and we know the difference between a Hilux on holiday and a Defender mid-Cairo-to-Cape. Antonie runs a 4x4 aftermarket business day-to-day; Aldin's a qualified Millwright. Between us we know what to check, who to call, and when to call them." },
   { heading: "vs doing nothing until you land", body: "Every week your vehicle sits unattended is a week of small problems compounding. By the time you fly back in, \"I'll deal with it then\" has cost you a fortnight of your trip. We catch it while you're still at home." },
 ];
 
 const facilityPhotos = [
   { src: "/images/facility/20251218_145018.jpg", caption: "The yard. 28 km from OR Tambo, off the main road, fenced and watched." },
-  { src: "/images/facility/20251218_150532.jpg", caption: "Under-cover bays. Your rig sits out of the sun, not under it." },
+  { src: "/images/facility/20251218_150532.jpg", caption: "Inside the hangar. Your rig sits out of the sun." },
   { src: "/images/facility/20260211_095053.jpg", caption: "Monthly check in progress. Battery, tyres, fluids, photos." },
   { src: "/images/facility/20260312_140216.jpg", caption: "The workshop. Most things we fix here. The rest goes to people we trust." },
   { src: "/images/facility/20260313_124939.jpg", caption: "The gate. There's always someone here. That's the point." },
@@ -134,7 +134,7 @@ export default async function HomePage() {
                     </a>
                   </div>
                   <p className="mt-3 text-sm text-evergreen/50">
-                    Trusted by overlanders from 14+ countries · Mon–Sat · We answer.
+                    Trusted by overlanders from 14+ countries · Open Mon–Sat · Reply within one business day.
                   </p>
                 </div>
               </HeroSupportReveal>
@@ -180,18 +180,19 @@ export default async function HomePage() {
       {/* ── Solution ── */}
       <section className="bg-evergreen text-parchment py-24 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl">
-          <FadeUp as="p" className="text-xs font-semibold uppercase tracking-widest text-cinnamon mb-3">Your African basecamp.</FadeUp>
+          <FadeUp as="p" className="text-xs font-semibold uppercase tracking-widest text-cinnamon mb-3">Your trusted African basecamp.</FadeUp>
           <FadeUp as="h2" delay={0.05} className="font-heading text-3xl font-bold sm:text-4xl leading-tight">
-            {home.solutionHeading ?? <>Think of us less as storage.<br />More as your basecamp on the continent.</>}
+            {home.solutionHeading ?? <>Safe. Personal. And ready when you are.</>}
           </FadeUp>
           <FadeUp delay={0.1} className="mt-8 space-y-5 text-khaki leading-relaxed">
             {home.solutionBody ? (
               home.solutionBody.split("\n\n").map((para, i) => <p key={i}>{para}</p>)
             ) : (
               <>
-                <p>Southern Africa Overlander Storage was built by people who've done the trip — for people who are still in the middle of theirs.</p>
+                <p>Think of us less as storage. More as your basecamp in Africa.</p>
+                <p>Southern Africa Overlander Storage was built for a question overlanders kept asking: <em>who looks after my vehicle when I go back home?</em></p>
                 <p>Drop your vehicle off the day before your flight. We pick you up at OR Tambo when you fly back in. Your rig is washed, charged, licensed, serviced, and parked exactly where you left it.</p>
-                <p>No friend doing you a favour. No yard with a padlock and a prayer. A small team that knows your vehicle by name and answers the WhatsApp at 7am.</p>
+                <p>Not a friend doing you a favour. Not a yard with a padlock and a camera nobody&apos;s watching. A small team that knows your vehicle by name and answers the WhatsApp at 7am.</p>
               </>
             )}
           </FadeUp>
@@ -377,18 +378,17 @@ export default async function HomePage() {
       <section className="bg-pine-teal text-parchment py-24 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl">
           <FadeUp as="h2" className="font-heading text-3xl font-bold sm:text-4xl leading-tight">
-            {home.founderHeading ?? <>We are overlanders too.<br />That is the whole reason this exists.</>}
+            {home.founderHeading ?? <>We&apos;re not overlanders.<br />We&apos;re the people who look after your vehicle when you are.</>}
           </FadeUp>
           <div className="mt-8 space-y-5 text-khaki leading-relaxed">
             {home.founderBody ? (
               home.founderBody.split("\n\n").map((para, i) => <p key={i}>{para}</p>)
             ) : (
               <>
-                <p>Hi — Antonie here.</p>
-                <p>A few years back I parked my own rig in Joburg between trips. Spent the entire flight home worrying about it. Spent half the next trip un-doing what nine months of neglect had done to it.</p>
-                <p>So we built the place I wished existed.</p>
-                <p>The team here are overlanders, mechanics, and South Africans who actually like solving problems before they become emergencies. We answer the phone. We send the photo. We pick you up at the airport. We get your paperwork sorted before you land.</p>
-                <p>Because the time you've saved for this trip is short. And we'd rather you spent it driving than fixing.</p>
+                <p>Hi — Antonie and Aldin here.</p>
+                <p>Between us, we spend our working lives inside the South African 4x4 world. Antonie runs OLG, an aftermarket 4x4 equipment business, fitting out bakkies and Land Cruisers for people who plan to take them somewhere serious. Aldin is a qualified Millwright who cut his teeth on assembly lines manufacturing cars. We both grew up loving the bushveld, weekends camping, and everything the 4x4 community stands for.</p>
+                <p>What we kept noticing was this: overlanders kept coming through Southern Africa on extraordinary trips, but kept struggling to find a proper place to leave their vehicle while they flew home. After some searching we met Duncan from African Overlanders who confirmed that there is a need for overlanding support near Pretoria/Johannesburg. That&apos;s how we decided to start Southern Africa Overlander Storage: a place where someone actually <em>cared</em> about the vehicle the way the owner would.</p>
+                <p>We care deeply about the overlanders we&apos;ve met on this journey. And we built SAOS to be the support this community deserves — starting here in Johannesburg, and growing across Southern Africa.</p>
               </>
             )}
           </div>
@@ -396,7 +396,7 @@ export default async function HomePage() {
             Team photo coming soon
           </div>
           <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="mt-8 inline-block bg-cinnamon text-parchment px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-colors">
-            Get in touch with Antonie directly
+            Call Antonie or Aldin directly
           </a>
         </div>
       </section>
